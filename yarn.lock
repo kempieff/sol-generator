@@ -1498,9 +1498,9 @@
     resolve-from "^5.0.0"
 
 "@expo/image-utils@^0.4.0":
-  version "0.4.2"
-  resolved "https://registry.npmjs.org/@expo/image-utils/-/image-utils-0.4.2.tgz"
-  integrity sha512-CxP+1QXgRXsNnmv2FAUA2RWwK6kNBFg4QEmVXn2K9iLoEAI+i+1IQXcUgc+J7nTJl9pO7FIu2gIiEYGYffjLWQ==
+  version "0.4.1"
+  resolved "https://registry.npmjs.org/@expo/image-utils/-/image-utils-0.4.1.tgz"
+  integrity sha512-EZb+VHSmw+a5s2hS9qksTcWylY0FDaIAVufcxoaRS9tHIXLjW5zcKW7Rhj9dSEbZbRVy9yXXdHKa3GQdUQIOFw==
   dependencies:
     "@expo/spawn-async" "1.5.0"
     chalk "^4.0.0"
@@ -3058,7 +3058,7 @@
     "@solana/wallet-adapter-base-ui" "^0.1.2"
     "@solana/wallet-adapter-react" "^0.15.35"
 
-"@solana/wallet-adapter-react@^0.15.3", "@solana/wallet-adapter-react@^0.15.35":
+"@solana/wallet-adapter-react@^0.15.35":
   version "0.15.35"
   resolved "https://registry.npmjs.org/@solana/wallet-adapter-react/-/wallet-adapter-react-0.15.35.tgz"
   integrity sha512-i4hc/gNLTYNLMEt2LS+4lrrc0QAwa5SU2PtYMnZ2A3rsoKF5m1bv1h6cjLj2KBry4/zRGEBoqkiMOC5zHkLnRQ==
@@ -5717,9 +5717,9 @@ copy-to-clipboard@^3.3.1:
     toggle-selection "^1.0.6"
 
 core-js-compat@^3.31.0, core-js-compat@^3.36.1:
-  version "3.36.1"
-  resolved "https://registry.npmjs.org/core-js-compat/-/core-js-compat-3.36.1.tgz"
-  integrity sha512-Dk997v9ZCt3X/npqzyGdTlq6t7lDBhZwGvV94PKzDArjp7BTRm7WlDAXYd/OWdeFHO8OChQYRJNJvUCqCbrtKA==
+  version "3.37.0"
+  resolved "https://registry.npmjs.org/core-js-compat/-/core-js-compat-3.37.0.tgz"
+  integrity sha512-vYq4L+T8aS5UuFg4UwDhc7YNRWVeVZwltad9C/jV3R2LgVOpS9BDr7l/WL6BN0dbV3k1XejPTHqqEzJgsa0frA==
   dependencies:
     browserslist "^4.23.0"
 

@@ -4,6 +4,7 @@ import {
   PublicKey,
   SystemProgram,
   Transaction,
+  SYSVAR_RENT_PUBKEY,
 } from "@solana/web3.js";
 import {
   MINT_SIZE,
@@ -13,6 +14,7 @@ import {
 } from "@solana/spl-token";
 import {
   createCreateMetadataAccountInstruction,
+  Data,
   PROGRAM_ID,
 } from "@metaplex-foundation/mpl-token-metadata";
 import { FC, useCallback, useState } from "react";
@@ -43,6 +45,27 @@ export const CreateToken: FC = () => {
 
     setIsLoading(true);
     try {
+      const metadataPublicKey = (
+        await PublicKey.findProgramAddress(
+          [
+            Buffer.from("metadata"),
+            PROGRAM_ID.toBuffer(),
+            mintKeypair.publicKey.toBuffer(),
+          ],
+          PROGRAM_ID,
+        )
+      )[0];
+
+      const createMetadataAccountInstructionAccounts = {
+        metadata: metadataPublicKey,
+        mint: mintKeypair.publicKey,
+        mintAuthority: publicKey,
+        payer: publicKey,
+        updateAuthority: publicKey,
+        systemProgram: SystemProgram.programId,
+        rent: SYSVAR_RENT_PUBKEY,
+      };
+
       const tx = new Transaction().add(
         SystemProgram.createAccount({
           fromPubkey: publicKey,
@@ -61,34 +84,7 @@ export const CreateToken: FC = () => {
         ),
 
         createCreateMetadataAccountInstruction(
-          {
-            metadata: (
-              await PublicKey.findProgramAddress(
-                [
-                  Buffer.from("metadata"),
-                  PROGRAM_ID.toBuffer(),
-                  mintKeypair.publicKey.toBuffer(),
-                ],
-                PROGRAM_ID,
-              )
-            )[0],
-            mint: mintKeypair.publicKey,
-            mintAuthority: publicKey,
-            payer: publicKey,
-            updateAuthority: publicKey,
-          },
-          {
-            createMetadataAccountArgs: {
-              data: {
-                name: tokenName,
-                symbol: tokenSymbol,
-                uri: tokenUri,
-                creators: null,
-                sellerFeeBasisPoints: 0,
-              },
-              isMutable: false,
-            },
-          },
+          createMetadataAccountInstructionAccounts,
         ),
       );
       const signature = await sendTransaction(tx, connection, {
@@ -183,12 +179,12 @@ export const CreateToken: FC = () => {
             </div>
           </div>
           <div className="mt-4">
-            <button
-              className="... btn m-2 animate-pulse bg-gradient-to-r from-[#9945FF] to-[#14F195] px-8 hover:from-pink-500 hover:to-yellow-500"
-              onClick={createToken}
-            >
-              Create token
-            </button>
+          <button
+            className="w-full py-2 mt-4 text-lg font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none"
+            onClick={createToken}
+          >
+            Create token
+          </button>
           </div>
         </div>
       ) : (
